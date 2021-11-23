@@ -1,0 +1,15 @@
+pull_request_rules:
+- actions:
+    queue:
+      name: default
+  conditions:
+  - base=20211123163111/test_queue_ci_pending_then_failed/main
+  name: Queue it
+queue_rules:
+- conditions:
+  - check-success=starter
+  - or:
+    - -check-pending=foo
+    - -check-failure=foo
+  name: default
+  speculative_checks: 5
